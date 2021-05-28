@@ -1,10 +1,10 @@
-let money;
-let income;
-let addExpenses;
-let deposit;
-let mission;
-let period;
+const money = 50,
+   income = 'Фриланс',
+   addExpenses = 'Интернет, продукты, коммуналка',
+   deposit = false,
+   mission = 300000,
+   period = 12;
 
-alert("hello!");
-
-console.log("Hi");
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
