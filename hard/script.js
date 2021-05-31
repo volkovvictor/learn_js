@@ -116,3 +116,7 @@ switch(namePerson) {
    default: 
       console.log('студент');
 }
+
+
+namePerson === 'Артём' ? console.log('директор') :
+namePerson === 'Максим' ? console.log('преподаватель') : console.log('студент');
