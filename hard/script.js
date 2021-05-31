@@ -19,8 +19,33 @@ console.log(sum.slice(0,2));
 const lang = prompt('ru или en');
 
 
-if(lang === 'ru') {
-   console.log([
+//if(lang === 'ru') {
+//   console.log([
+//      'Понедельник', 
+//      'вторник', 
+//      'cреда', 
+//      'четверг', 
+//      'пятница', 
+//      'суббота', 
+//      'воскресенье'
+//   ]);
+//} else if (lang === 'en'){
+//   console.log([
+//      'monday',
+//      'tuesday', 
+//      'wednesday',
+//      'thursday ',
+//      'friday ',
+//      'saturday ',
+//      'sunday' 
+//      ]);
+//} else {
+//   console.log('Ошибка');
+//}
+
+switch(lang)  {
+   case 'ru': 
+      console.log([
       'Понедельник', 
       'вторник', 
       'cреда', 
@@ -28,17 +53,20 @@ if(lang === 'ru') {
       'пятница', 
       'суббота', 
       'воскресенье'
-   ]);
-} else if (lang === 'en'){
-   console.log([
-      'monday',
-      'tuesday', 
-      'wednesday',
-      'thursday ',
-      'friday ',
-      'saturday ',
-      'sunday' 
       ]);
-} else {
-   console.log('Ошибка');
+   break;
+
+   case 'en':
+      console.log([
+         'monday',
+         'tuesday', 
+         'wednesday',
+         'thursday ',
+         'friday ',
+         'saturday ',
+         'sunday' 
+         ]);
+      break;
+
+   default: console.log('Ошибка');
 }
