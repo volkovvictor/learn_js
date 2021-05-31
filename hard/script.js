@@ -98,3 +98,10 @@ lang === 'ru' ? console.log(arr[0]) : console.log(arr[1]);
 
 const namePerson = prompt("Имя");
 
+if(namePerson === 'Артём') {
+   console.log('директор');
+} else if (namePerson === 'Максим') {
+   console.log('преподаватель');
+} else {
+   console.log('студент');
+}
