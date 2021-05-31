@@ -5,6 +5,14 @@ const money = prompt('Ваш месячный доход?'),
    mission = 300000,
    period = 12;
 
+
+   const expenses1 = prompt('Введите обязательную статью расходов?');
+const amount1 = +prompt('Во сколько это обойдется?');
+const expenses2 = prompt('Введите обязательную статью расходов?');
+const amount2 = +prompt('Во сколько это обойдется?');
+const budgetMonth = money - (amount1 + amount2);
+const budgetDay = budgetMonth / 30;
+
 console.log(typeof money);
 console.log(typeof income);
 console.log(typeof deposit);
@@ -16,15 +24,7 @@ console.log(`Цель заработать ${mission} рублей`);
 
 console.log(addExpenses.toLowerCase().split(', '));
 
-const budgetDay = money / 30;
+console.log('Бюджет на месяц: ' + budgetMonth);
+console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев(-а)');
 
 console.log(budgetDay);
-
-const expenses1 = prompt('Введите обязательную статью расходов?');
-const amount1 = +prompt('Во сколько это обойдется?');
-const expenses2 = prompt('Введите обязательную статью расходов?');
-const amount2 = +prompt('Во сколько это обойдется?');
-
-const budgetMonth = money - (amount1 + amount2);
-console.log('Бюджет на месяц: ' + budgetMonth);
-console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' -месяцев(-а)');
