@@ -1,3 +1,5 @@
+'use strict';
+
 let num = 266219;
 let sum = 1;
 num = num.toString();
