@@ -6,11 +6,11 @@ const money = prompt('Ваш месячный доход?'),
    period = 12;
 
 
-   const expenses1 = prompt('Введите обязательную статью расходов?');
+const expenses1 = prompt('Введите обязательную статью расходов?');
 const amount1 = +prompt('Во сколько это обойдется?');
 const expenses2 = prompt('Введите обязательную статью расходов?');
 const amount2 = +prompt('Во сколько это обойдется?');
-const budgetMonth = money - (amount1 + amount2);
+const budgetMonth = amount1 + amount2;
 const budgetDay = budgetMonth / 30;
 
 console.log(typeof money);
