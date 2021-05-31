@@ -94,3 +94,7 @@ switch(lang)  {
 
 lang === 'ru' ? console.log(arr[0]) : console.log(arr[1]);
 
+///////////////////////////////////////////////////////////
+
+const namePerson = prompt("Имя");
+
