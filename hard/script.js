@@ -17,31 +17,50 @@ console.log(sum.slice(0,2));
 /////////////////////////////////
 
 const lang = prompt('ru или en');
+const arr = [
+   [
+      'Понедельник', 
+      'вторник', 
+      'cреда', 
+      'четверг', 
+      'пятница', 
+      'суббота', 
+      'воскресенье'
+   ], 
+   [
+      'monday',
+      'tuesday', 
+      'wednesday',
+      'thursday ',
+      'friday ',
+      'saturday ',
+      'sunday' 
+   ]
+];
 
-
-//if(lang === 'ru') {
-//   console.log([
-//      'Понедельник', 
-//      'вторник', 
-//      'cреда', 
-//      'четверг', 
-//      'пятница', 
-//      'суббота', 
-//      'воскресенье'
-//   ]);
-//} else if (lang === 'en'){
-//   console.log([
-//      'monday',
-//      'tuesday', 
-//      'wednesday',
-//      'thursday ',
-//      'friday ',
-//      'saturday ',
-//      'sunday' 
-//      ]);
-//} else {
-//   console.log('Ошибка');
-//}
+if(lang === 'ru') {
+   console.log([
+      'Понедельник', 
+      'вторник', 
+      'cреда', 
+      'четверг', 
+      'пятница', 
+      'суббота', 
+      'воскресенье'
+   ]);
+} else if (lang === 'en'){
+   console.log([
+      'monday',
+      'tuesday', 
+      'wednesday',
+      'thursday ',
+      'friday ',
+      'saturday ',
+      'sunday' 
+      ]);
+} else {
+   console.log('Ошибка');
+}
 
 switch(lang)  {
    case 'ru': 
@@ -70,3 +89,6 @@ switch(lang)  {
 
    default: console.log('Ошибка');
 }
+
+lang === 'ru' ? console.log(arr[0]) : console.log(arr[1]);
+
