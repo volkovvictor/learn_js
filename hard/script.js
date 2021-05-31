@@ -105,3 +105,14 @@ if(namePerson === 'Артём') {
 } else {
    console.log('студент');
 }
+
+switch(namePerson) {
+   case 'Артём':
+      console.log('директор');
+      break;
+   case 'Максим':
+      console.log('преподаватель');
+      break;
+   default: 
+      console.log('студент');
+}
