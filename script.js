@@ -1,7 +1,7 @@
-const money = 50000,
+const money = prompt('Ваш месячный доход?'),
    income = 'Фриланс',
-   addExpenses = 'Интернет, Продукты, Коммуналка',
-   deposit = false,
+   addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+   deposit = confirm('Есть ли у вас депозит в банке?'),
    mission = 300000,
    period = 12;
 
