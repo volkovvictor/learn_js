@@ -27,4 +27,3 @@ const amount2 = +prompt('Во сколько это обойдется?');
 
 const budgetMonth = money - (amount1 + amount2);
 console.log('Бюджет на месяц: ' + budgetMonth);
-console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев(-а)');
