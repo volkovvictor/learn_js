@@ -1,3 +1,5 @@
+'use strict';
+
 const money = prompt('Ваш месячный доход?'),
    income = 'Фриланс',
    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
@@ -9,7 +11,14 @@ const money = prompt('Ваш месячный доход?'),
    expenses2 = prompt('Введите обязательную статью расходов?'),
    amount2 = +prompt('Во сколько это обойдется?'),
    budgetMonth = amount1 + amount2,
-   budgetDay = budgetMonth / 30;
+   budgetDay = budgetMonth / 30,
+   getExpensesMonth = function() {
+      return amount1 + amount2;
+   },
+   getAccumulatedMonth = function() {
+      return money - getExpensesMonth();
+   };
+
 
 console.log(typeof money);
 console.log(typeof income);
