@@ -3,15 +3,13 @@ const money = prompt('Ваш месячный доход?'),
    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
    deposit = confirm('Есть ли у вас депозит в банке?'),
    mission = 300000,
-   period = 12;
-
-
-const expenses1 = prompt('Введите обязательную статью расходов?');
-const amount1 = +prompt('Во сколько это обойдется?');
-const expenses2 = prompt('Введите обязательную статью расходов?');
-const amount2 = +prompt('Во сколько это обойдется?');
-const budgetMonth = amount1 + amount2;
-const budgetDay = budgetMonth / 30;
+   period = 12,
+   expenses1 = prompt('Введите обязательную статью расходов?'),
+   amount1 = +prompt('Во сколько это обойдется?'),
+   expenses2 = prompt('Введите обязательную статью расходов?'),
+   amount2 = +prompt('Во сколько это обойдется?'),
+   budgetMonth = amount1 + amount2,
+   budgetDay = budgetMonth / 30;
 
 console.log(typeof money);
 console.log(typeof income);
@@ -33,7 +31,7 @@ if(budgetDay >= 1200) {
    console.log('У вас высокий уровень дохода');
 } else if(budgetDay >= 600 && budgetDay < 1200) {
    console.log('У вас средний уровень дохода');
-} else if(budgetDay < 600 && budgetDay > 0) {
+} else if(budgetDay < 600 && budgetDay >= 0) {
    console.log('К сожалению у вас уровень дохода ниже среднего');
 } else {
    console.log('Что то пошло не так');
