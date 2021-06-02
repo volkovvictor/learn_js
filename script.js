@@ -17,6 +17,10 @@ const money = prompt('Ваш месячный доход?'),
    },
    getAccumulatedMonth = function() {
       return money - getExpensesMonth();
+   },
+   accumulatedMonth = getAccumulatedMonth(),
+   getTargetMonth = function() {
+      return Math.ceil(mission / accumulatedMonth);
    };
 
 
