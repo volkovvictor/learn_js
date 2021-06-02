@@ -10,8 +10,6 @@ const money = prompt('Ваш месячный доход?'),
    amount1 = +prompt('Во сколько это обойдется?'),
    expenses2 = prompt('Введите обязательную статью расходов?'),
    amount2 = +prompt('Во сколько это обойдется?'),
-   budgetMonth = amount1 + amount2,
-   budgetDay = budgetMonth / 30,
    getExpensesMonth = function() {
       return amount1 + amount2;
    },
@@ -21,12 +19,27 @@ const money = prompt('Ваш месячный доход?'),
    accumulatedMonth = getAccumulatedMonth(),
    getTargetMonth = function() {
       return Math.ceil(mission / accumulatedMonth);
-   };
+   },
+   budgetDay = accumulatedMonth / 30,
+   showTypeOf = function(data) {
+      return typeof(data);
+   },
+   getStatusIncome = function() {
+      if(budgetDay >= 1200) {
+         return ('У вас высокий уровень дохода');
+      } else if(budgetDay >= 600 && budgetDay < 1200) {
+         return ('У вас средний уровень дохода');
+      } else if(budgetDay < 600 && budgetDay >= 0) {
+         return ('К сожалению у вас уровень дохода ниже среднего');
+      } else {
+         return ('Что то пошло не так');
+      }
+   }
 
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
+console.log(showTypeOf(money));
+console.log(showTypeOf(income));
+console.log(showTypeOf(deposit));
 
 console.log(addExpenses.length);
 
@@ -35,17 +48,9 @@ console.log(`Цель заработать ${mission} рублей`);
 
 console.log(addExpenses.toLowerCase().split(', '));
 
-console.log('Бюджет на месяц: ' + budgetMonth);
-console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев(-а)');
+console.log('Бюджет на месяц: ' + getExpensesMonth());
+console.log('Цель будет достигнута за ' + getTargetMonth() + ' месяцев(-а)');
 
 console.log(Math.floor(budgetDay));
 
-if(budgetDay >= 1200) {
-   console.log('У вас высокий уровень дохода');
-} else if(budgetDay >= 600 && budgetDay < 1200) {
-   console.log('У вас средний уровень дохода');
-} else if(budgetDay < 600 && budgetDay >= 0) {
-   console.log('К сожалению у вас уровень дохода ниже среднего');
-} else {
-   console.log('Что то пошло не так');
-}
+console.log(getStatusIncome());
