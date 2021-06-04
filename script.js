@@ -10,11 +10,11 @@ const money = prompt('Ваш месячный доход?'),
    amount1 = +prompt('Во сколько это обойдется?'),
    expenses2 = prompt('Введите обязательную статью расходов?'),
    amount2 = +prompt('Во сколько это обойдется?'),
-   getExpensesMonth = function() {
-      return amount1 + amount2;
+   getExpensesMonth = function(a, b) {
+      return a + b;
    },
    getAccumulatedMonth = function() {
-      return money - getExpensesMonth();
+      return money - getExpensesMonth(amount1 + amount2);
    },
    accumulatedMonth = getAccumulatedMonth(),
    getTargetMonth = function() {
