@@ -1,6 +1,6 @@
 'use strict';
 
-let money = prompt('Ваш месячный доход?'),
+let money,
    income = 'Фриланс',
    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
    deposit = confirm('Есть ли у вас депозит в банке?'),
@@ -14,7 +14,12 @@ let money = prompt('Ваш месячный доход?'),
 const isNumber = function (n) {
          return !isNaN(parseFloat(n)) && isFinite(n);
       },
-      
+      start = function(n) {
+         do {
+            money = prompt('Ваш месячный доход?');
+         }
+         while(!isNumber(money));
+      },
       getExpensesMonth = function(a, b) {
          return a + b;
       },
@@ -41,7 +46,7 @@ const isNumber = function (n) {
          }
       };
 
-      start();
+      start(money);
 
 
 console.log(showTypeOf(money));
