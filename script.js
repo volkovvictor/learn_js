@@ -1,6 +1,6 @@
 'use strict';
 
-let money,
+let money = prompt('Ваш месячный доход?'),
    income = 'Фриланс',
    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
    deposit = confirm('Есть ли у вас депозит в банке?'),
@@ -9,42 +9,39 @@ let money,
    expenses1 = prompt('Введите обязательную статью расходов?'),
    amount1 = +prompt('Во сколько это обойдется?'),
    expenses2 = prompt('Введите обязательную статью расходов?'),
-   amount2 = +prompt('Во сколько это обойдется?'),
-   isNumber = function(num) {
-      return isNaN(parseFloat(num));
-   },
-   getExpensesMonth = function(a, b) {
-      return a + b;
-   },
-   getAccumulatedMonth = function() {
-      return money - getExpensesMonth(amount1 + amount2);
-   },
-   accumulatedMonth = getAccumulatedMonth(),
-   getTargetMonth = function() {
-      return Math.ceil(mission / accumulatedMonth);
-   },
-   budgetDay = accumulatedMonth / 30,
-   showTypeOf = function(data) {
-      return typeof(data);
-   },
-   getStatusIncome = function() {
-      if(budgetDay >= 1200) {
-         return ('У вас высокий уровень дохода');
-      } else if(budgetDay >= 600 && budgetDay < 1200) {
-         return ('У вас средний уровень дохода');
-      } else if(budgetDay < 600 && budgetDay >= 0) {
-         return ('К сожалению у вас уровень дохода ниже среднего');
-      } else {
-         return ('Что то пошло не так');
-      }
-   },
-   start = function() {
-      do {
-         money = prompt('Ваш месячный доход?');
-      } while(isNumber(money));
-   };
+   amount2 = +prompt('Во сколько это обойдется?');
 
-   start();
+const isNumber = function (n) {
+         return !isNaN(parseFloat(n)) && isFinite(n);
+      },
+      
+      getExpensesMonth = function(a, b) {
+         return a + b;
+      },
+      getAccumulatedMonth = function() {
+         return money - getExpensesMonth(amount1 + amount2);
+      },
+      accumulatedMonth = getAccumulatedMonth(),
+      getTargetMonth = function() {
+         return Math.ceil(mission / accumulatedMonth);
+      },
+      budgetDay = accumulatedMonth / 30,
+      showTypeOf = function(data) {
+         return typeof(data);
+      },
+      getStatusIncome = function() {
+         if(budgetDay >= 1200) {
+            return ('У вас высокий уровень дохода');
+         } else if(budgetDay >= 600 && budgetDay < 1200) {
+            return ('У вас средний уровень дохода');
+         } else if(budgetDay < 600 && budgetDay >= 0) {
+            return ('К сожалению у вас уровень дохода ниже среднего');
+         } else {
+            return ('Что то пошло не так');
+         }
+      };
+
+      start();
 
 
 console.log(showTypeOf(money));
