@@ -28,28 +28,35 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0, 
    asking: function() { 
-      const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'); 
+      const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
-      appData.deposit = confirm('Есть ли у вас депозит в банке?'); 
+      appData.deposit = confirm('Есть ли у вас депозит в банке?');
+
+      for(let i = 0; i < 2; i++) {
+         appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
+         amount = prompt('Во сколько это обойдется?');
+         appData.expenses[appData.addExpenses[i]] = +amount;
+      }
+
+      console.log(appData.expenses);
    },
 };
 
-   appData.getExpensesMonth = function() {
-         let sum = 0;
+appData.asking();
 
-         for(let i = 0; i < 2; i++) {
-            appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
+appData.getExpensesMonth = function() {
+      let sum = 0;
+
+      for(let i = 0; i < 2; i++) {
+         while(!isNumber(amount)) {
             amount = prompt('Во сколько это обойдется?');
-
-            while(!isNumber(amount)) {
-               amount = prompt('Во сколько это обойдется?');
-            }
-
-            sum += +amount;
          }
-         return sum;
-      };
+
+         sum += +amount;
+      }
+      return sum;
+   };
 
 const expensesAmount = appData.getExpensesMonth();
 
