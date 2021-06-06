@@ -60,11 +60,6 @@ const income = 'Фриланс',
          }
       };
 
-
-console.log(showTypeOf(money));
-console.log(showTypeOf(income));
-console.log(showTypeOf(deposit));
-
 console.log(addExpenses.length);
 
 console.log(`Период равен ${period} месяцев`);
