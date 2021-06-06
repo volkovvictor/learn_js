@@ -36,6 +36,11 @@ const appData = {
       for(let i = 0; i < 2; i++) {
          appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
          amount = prompt('Во сколько это обойдется?');
+
+         while(!isNumber(amount)) {
+            amount = prompt('Во сколько это обойдется?');
+         }
+
          appData.expenses[appData.addExpenses[i]] = +amount;
       }
 
@@ -48,20 +53,20 @@ appData.asking();
 appData.getExpensesMonth = function() {
       let sum = 0;
 
-      for(let i = 0; i < 2; i++) {
-         while(!isNumber(amount)) {
-            amount = prompt('Во сколько это обойдется?');
-         }
-
-         sum += +amount;
+      for(let key in appData.expenses) {
+         sum += appData.expenses[key];
       }
+
       return sum;
    };
 
-const expensesAmount = appData.getExpensesMonth();
+
+appData.expensesAmount = appData.getExpensesMonth();
+
+console.log(appData.expensesAmount);
 
 appData.getAccumulatedMonth = function() {
-         return money - expensesAmount;
+         return money - appData.expensesAmount;
       };
 
 const accumulatedMonth = appData.getAccumulatedMonth();
@@ -88,7 +93,7 @@ console.log(appData.addExpenses.length);
 console.log(`Период равен ${appData.period} месяцев`);
 console.log(`Цель заработать ${appData.mission} рублей`);
 
-console.log('Бюджет на месяц: ' + expensesAmount);
+console.log('Бюджет на месяц: ' + appData.expensesAmount);
 
 if(appData.getTargetMonth() >= 0) {
    console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
