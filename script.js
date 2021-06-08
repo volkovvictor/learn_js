@@ -27,7 +27,6 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0, 
    asking: function() {
-      let addExpenses;
 
       if(confirm('Есть ли у вас дополнительный источник заработка?')) {
          let itemIncome, cashIncome;
@@ -42,9 +41,9 @@ const appData = {
          appData.income[itemIncome] = cashIncome;
       }
 
-      appData.addExpenses = addExpenses.toLowerCase().split(', '); 
-      appData.deposit = confirm('Есть ли у вас депозит в банке?');
+      const addExpenses = ('Перечислите возможные расходы за рассчитываемый период через запятую');
 
+      appData.addExpenses = addExpenses.toLowerCase().split(', '); 
       for(let i = 0; i < 2; i++) {
          let amount;
 
@@ -63,7 +62,7 @@ const appData = {
          appData.expenses[appData.addExpenses[i]] = +amount;
       }
 
-      console.log(appData.expenses);
+      appData.deposit = confirm('Есть ли у вас депозит в банке?');
    },
    getExpensesMonth: function() {
       let sum = 0;
@@ -96,8 +95,15 @@ const appData = {
    },
    getInfoDeposit: function() {
       if(appData.deposit) {
-         appData.percentDeposit = prompt('Какой годовой процент?', 10 + ' %');
-         appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+         do {
+            appData.percentDeposit = prompt('Какой годовой процент?', 10);
+         }
+         while(!isNumber(appData.percentDeposit));
+
+         do {
+            appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+         }
+         while(!isNumber(appData.moneyDeposit));
       }
    },
    calcSavedMoney: function() {
@@ -106,7 +112,7 @@ const appData = {
 };
 
 appData.asking();
-
+appData.getInfoDeposit();
 appData.getBudget();
 
 
