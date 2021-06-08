@@ -42,21 +42,23 @@ const appData = {
          appData.income[itemIncome] = cashIncome;
       }
 
-      do {
-         addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-      }while(!isNaN(addExpenses) || addExpenses.trim() === '' || addExpenses === null);
-
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
       for(let i = 0; i < 2; i++) {
          let amount;
-         appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
-         amount = prompt('Во сколько это обойдется?');
 
-         while(!isNumber(amount)) {
+         do {
+            appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
+         }
+         while(!isNaN(appData.addExpenses[i]) || 
+                     appData.addExpenses[i].trim() === '' || 
+                     appData.addExpenses[i] === null);
+
+         do {
             amount = prompt('Во сколько это обойдется?');
          }
+         while(!isNumber(amount));
 
          appData.expenses[appData.addExpenses[i]] = +amount;
       }
