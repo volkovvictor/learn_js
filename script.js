@@ -27,7 +27,6 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0, 
    asking: function() {
-
       if(confirm('Есть ли у вас дополнительный источник заработка?')) {
          let itemIncome, cashIncome;
          do {
@@ -41,9 +40,19 @@ const appData = {
          appData.income[itemIncome] = cashIncome;
       }
 
-      const addExpenses = ('Перечислите возможные расходы за рассчитываемый период через запятую');
+      let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+         addExpensesArr = addExpenses.toLowerCase().split(', ');
+      
+      for(let i = 0; i < addExpensesArr.length; i++) {
+         addExpensesArr[i].substring(0, 1).toUpperCase();
+         addExpensesArr[i] = addExpensesArr[i][0].toUpperCase() + addExpensesArr[i].slice(1);
+
+      }
+
+      console.log(addExpensesArr.join(', '));
 
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
+
       for(let i = 0; i < 2; i++) {
          let amount;
 
