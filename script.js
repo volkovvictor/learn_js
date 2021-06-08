@@ -83,9 +83,16 @@ const appData = {
          return ('Что то пошло не так');
       }
    },
+   getInfoDeposit: function() {
+      if(appData.deposit) {
+         appData.percentDeposit = prompt('Какой годовой процент?', 10 + ' %');
+         appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+      }
+   }
 };
 
 appData.asking();
+appData.getInfoDeposit();
 
 appData.getBudget();
 
