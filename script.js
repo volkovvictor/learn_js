@@ -27,6 +27,14 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0, 
    asking: function() {
+
+      if(confirm('Какой у вас дополнительный источник заработка?')) {
+         const itemIncome = prompt('Какой у вас дополнительный заработок?', 'фриланс');
+         const cashIncome = prompt('Сколько вы на этом зарабатываете', 20000);
+
+         appData.income[itemIncome] = cashIncome;
+      }
+
       const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
@@ -74,8 +82,7 @@ const appData = {
       } else {
          return ('Что то пошло не так');
       }
-   }
-
+   },
 };
 
 appData.asking();
