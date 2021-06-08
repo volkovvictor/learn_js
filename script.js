@@ -88,11 +88,13 @@ const appData = {
          appData.percentDeposit = prompt('Какой годовой процент?', 10 + ' %');
          appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
       }
+   },
+   calcSavedMoney: function() {
+      return appData.budgetMonth * appData.period;
    }
 };
 
 appData.asking();
-appData.getInfoDeposit();
 
 appData.getBudget();
 
