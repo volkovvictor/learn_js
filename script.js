@@ -28,9 +28,15 @@ const appData = {
    expensesMonth: 0, 
    asking: function() {
 
-      if(confirm('Какой у вас дополнительный источник заработка?')) {
-         const itemIncome = prompt('Какой у вас дополнительный заработок?', 'фриланс');
-         const cashIncome = prompt('Сколько вы на этом зарабатываете', 20000);
+      if(confirm('Есть ли у вас дополнительный источник заработка?')) {
+         let itemIncome, cashIncome;
+         do {
+            itemIncome = prompt('Какой у вас дополнительный заработок?', 'фриланс');
+         } while(!isNaN(itemIncome) || itemIncome.trim() === '' || itemIncome === null);
+
+         do {
+            cashIncome = prompt('Сколько вы на этом зарабатываете', 20000);
+         } while(!isNumber(cashIncome));
 
          appData.income[itemIncome] = cashIncome;
       }
