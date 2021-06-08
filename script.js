@@ -1,7 +1,6 @@
 'use strict';
 
-let money,
-   amount;
+let money;
 
 const isNumber = function (n) {
          return !isNaN(parseFloat(n)) && isFinite(n);
@@ -27,13 +26,14 @@ const appData = {
    budgetDay: 0, 
    budgetMonth : 0, 
    expensesMonth: 0, 
-   asking: function() { 
+   asking: function() {
       const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
       for(let i = 0; i < 2; i++) {
+         let amount;
          appData.addExpenses[i] = prompt('Введите обязательную статью расходов?');
          amount = prompt('Во сколько это обойдется?');
 
@@ -46,11 +46,7 @@ const appData = {
 
       console.log(appData.expenses);
    },
-};
-
-appData.asking();
-
-appData.getExpensesMonth = function() {
+   getExpensesMonth: function() {
       let sum = 0;
 
       for(let key in appData.expenses) {
@@ -58,36 +54,36 @@ appData.getExpensesMonth = function() {
       }
 
       return sum;
-   };
+   },
+   getBudget: function() {
+      appData.budgetMonth =  appData.budget - appData.getExpensesMonth();
+      appData.budgetDay = appData.budgetMonth / 30;
+   },
+   getTargetMonth: function() {
+      return Math.ceil(appData.mission / appData.budgetMonth);
+   },
+   getStatusIncome: function() {
+      if(appData.budgetDay >= 1200) {
+         return ('У вас высокий уровень дохода');
+      } 
+      if(appData.budgetDay >= 600 && appData.budgetDay < 1200) {
+         return ('У вас средний уровень дохода');
+      } 
+      if(appData.budgetDay < 600 && appData.budgetDay >= 0) {
+         return ('К сожалению у вас уровень дохода ниже среднего');
+      } else {
+         return ('Что то пошло не так');
+      }
+   }
 
-appData.expensesAmount = appData.getExpensesMonth();
-
-appData.getBudget = function() {
-         appData.budgetMonth =  appData.budget - appData.expensesAmount;
-         appData.budgetDay = appData.budgetMonth / 30;
 };
 
-appData.getTargetMonth = function() {
-         return Math.ceil(appData.mission / appData.budgetMonth);
-};
-appData.getStatusIncome = function() {
-         if(appData.budgetDay >= 1200) {
-            return ('У вас высокий уровень дохода');
-         } 
-         if(appData.budgetDay >= 600 && appData.budgetDay < 1200) {
-            return ('У вас средний уровень дохода');
-         } 
-         if(appData.budgetDay < 600 && appData.budgetDay >= 0) {
-            return ('К сожалению у вас уровень дохода ниже среднего');
-         } else {
-            return ('Что то пошло не так');
-         }
-};
+appData.asking();
 
 appData.getBudget();
 
 
-console.log(`Расходы за месяц ${appData.expensesAmount}`);
+console.log(`Расходы за месяц ${appData.getExpensesMonth()}`);
 
 if(appData.getTargetMonth() >= 0) {
    console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
