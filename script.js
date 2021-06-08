@@ -27,6 +27,7 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0, 
    asking: function() {
+      let addExpenses;
 
       if(confirm('Есть ли у вас дополнительный источник заработка?')) {
          let itemIncome, cashIncome;
@@ -41,7 +42,9 @@ const appData = {
          appData.income[itemIncome] = cashIncome;
       }
 
-      const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+      do {
+         addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+      }while(!isNaN(addExpenses) || addExpenses.trim() === '' || addExpenses === null);
 
       appData.addExpenses = addExpenses.toLowerCase().split(', '); 
       appData.deposit = confirm('Есть ли у вас депозит в банке?');
