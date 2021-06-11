@@ -5,11 +5,13 @@ const calcBtn = document.getElementById('start'),
       incomeAdd = income.querySelector('button'),
       expenses = document.querySelector('.expenses'),
       expensesAdd = expenses.querySelector('button'),
-      depositCheck = document.querySelector('#deposit-check');
+      depositCheck = document.querySelector('#deposit-check'),
+      additionalInputs = document.querySelectorAll('.additional_income-item');
 console.log(calcBtn);
 console.log(incomeAdd);
 console.log(expensesAdd);
 console.log(depositCheck);
+console.log(additionalInputs);
 
 let money;
 
