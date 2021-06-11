@@ -6,12 +6,27 @@ const calcBtn = document.getElementById('start'),
       expenses = document.querySelector('.expenses'),
       expensesAdd = expenses.querySelector('button'),
       depositCheck = document.querySelector('#deposit-check'),
-      additionalInputs = document.querySelectorAll('.additional_income-item');
+      additionalInputs = document.querySelectorAll('.additional_income-item'),
+      budgetMonthValue = document.getElementsByClassName('budget_month-value'),
+      budgetDayValue = document.getElementsByClassName('budget_day-value'),
+      expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
+      additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
+      additionalExpensesValue = document.getElementsByClassName('additional_expenses-value'),
+      incomePeriodValue = document.getElementsByClassName('income_period-value'),
+      targetMonthValue = document.getElementsByClassName('target_month-value');
+
 console.log(calcBtn);
 console.log(incomeAdd);
 console.log(expensesAdd);
 console.log(depositCheck);
 console.log(additionalInputs);
+console.log(budgetMonthValue);
+console.log(budgetDayValue);
+console.log(expensesMonthValue);
+console.log(additionalIncomeValue);
+console.log(additionalExpensesValue);
+console.log(incomePeriodValue);
+console.log(targetMonthValue);
 
 let money;
 
