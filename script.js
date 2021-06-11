@@ -1,7 +1,13 @@
 'use strict';
 
-const calcBtn = document.getElementById('start');
+const calcBtn = document.getElementById('start'),
+      income = document.querySelector('.income'),
+      incomeAdd = income.querySelector('button'),
+      expenses = document.querySelector('.expenses'),
+      expensesAdd = expenses.querySelector('button');
 console.log(calcBtn);
+console.log(incomeAdd);
+console.log(expensesAdd);
 
 let money;
 
