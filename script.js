@@ -73,7 +73,16 @@ const appData = {
       }
 
       console.log(expensesItems.length);
+   },
+   addIncomeBlock: function() {
+      let incomeItemsClone = incomeItems[0].cloneNode(true);
 
+      incomeItems[0].parentNode.insertBefore(incomeItemsClone, incomeAdd);
+      incomeItems = document.querySelectorAll('.income-items');
+
+      if(incomeItems.length === 3) {
+         incomeAdd.style.display = 'none';
+      }
    },
    getExpenses: function() {
       expensesItems.forEach(function(item) {
@@ -162,6 +171,7 @@ const appData = {
 
 calcBtn.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
+incomeAdd.addEventListener('click', appData.addIncomeBlock);
 
 //if(appData.getTargetMonth() >= 0) {
 //   console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
