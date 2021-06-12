@@ -133,7 +133,7 @@ const appData = {
    },
    getBudget: function() {
       appData.budgetMonth =  appData.budget + appData.incomeMonth - appData.expensesMonth;
-      appData.budgetDay = appData.budgetMonth / 30;
+      appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
    },
    getTargetMonth: function() {
       return Math.ceil(targetAmount.value / appData.budgetMonth);
