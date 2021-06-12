@@ -164,6 +164,11 @@ const appData = {
          while(!isNumber(appData.moneyDeposit));
       }
    },
+   changePeriod: function() {
+      let periodAmount = document.querySelector('.period-amount');
+
+      periodAmount.textContent = periodSelect.value;
+   },
    calcSavedMoney: function() {
       return appData.budgetMonth * periodSelect.value;
    }
@@ -172,6 +177,7 @@ const appData = {
 calcBtn.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
+periodSelect.addEventListener('input', appData.changePeriod);
 
 //if(appData.getTargetMonth() >= 0) {
 //   console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
