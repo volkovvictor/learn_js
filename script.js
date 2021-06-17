@@ -232,12 +232,12 @@ periodSelect.addEventListener('input', appData.changePeriod.bind(appData));
 resetBtn.addEventListener('click', appData.reset.bind(appData));
 
 
-//if(appData.getTargetMonth() >= 0) {
-//   console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
-//} else {
-//   console.log('Цель не будет достигнута');
-//}
+if(appData.getTargetMonth() >= 0) {
+   console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
+} else {
+   console.log('Цель не будет достигнута');
+}
 
-//for(let key in appData) {
-//   console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
-//}
+for(let key in appData) {
+   console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
+}
