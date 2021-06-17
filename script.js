@@ -166,12 +166,26 @@ const appData = {
    },
    calcSavedMoney: function() {
       return this.budgetMonth * periodSelect.value;
+   },
+   stop: function() {
+      const data = document.querySelector('.data'),
+            dataInputs = data.querySelectorAll('input[type=text]');
+
+      dataInputs.forEach(function(item) {
+         item.disabled = true;
+      });
+
+      calcBtn.remove();
+   },
+   reset: function() {
+
    }
 };
 
 calcBtn.addEventListener('click', function() {
    if(salaryAmount.value !== '') {
       appData.start();
+      appData.stop();
    }
 });
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
