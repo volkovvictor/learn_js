@@ -38,24 +38,23 @@ const appData = {
    budgetMonth : 0, 
    expensesMonth: 0,
    start: function(n) {
-      appData.budget = +salaryAmount.value;
-
-      appData.getExpenses();
-      appData.getIncome();
-      appData.getExpensesMonth();
-      appData.getInfoDeposit();
-      appData.getBudget();
-      appData.getAddExpenses();
-      appData.getAddIncome();
-      appData.showResult();
+      this.budget = +salaryAmount.value;
+      this.getExpenses();
+      this.getIncome();
+      this.getExpensesMonth();
+      this.getInfoDeposit();
+      this.getBudget();
+      this.getAddExpenses();
+      this.getAddIncome();
+      this.showResult();
    },
    showResult: function() {
-      budgetMonthValue.value = appData.budgetMonth;
-      budgetDayValue.value = appData.budgetDay;
-      expensesMonthValue.value = appData.expensesMonth;
-      additionalExpensesValue.value = appData.addExpenses.join(', ');
-      additionalIncomeValue.value = appData.addIncome.join(', ');
-      targetMonthValue.value = appData.getTargetMonth();
+      budgetMonthValue.value = this.budgetMonth;
+      budgetDayValue.value = this.budgetDay;
+      expensesMonthValue.value = this.expensesMonth;
+      additionalExpensesValue.value = this.addExpenses.join(', ');
+      additionalIncomeValue.value = this.addIncome.join(', ');
+      targetMonthValue.value = this.getTargetMonth();
    },
    addExpensesBlock: function() {
       let expensesItemsClone = expensesItems[0].cloneNode(true);
@@ -120,39 +119,40 @@ const appData = {
       });
    },
    getExpensesMonth: function() {
-      for(let key in appData.expenses) {
-         appData.expensesMonth += +appData.expenses[key];
+      for(let key in this.expenses) {
+         this.expensesMonth += +this.expenses[key];
       }
    },
    getBudget: function() {
-      appData.budgetMonth =  appData.budget + appData.incomeMonth - appData.expensesMonth;
-      appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
+      this.budgetMonth =  this.budget + this.incomeMonth - this.expensesMonth;
+      this.budgetDay = Math.ceil(this.budgetMonth / 30);
    },
    getTargetMonth: function() {
-      return Math.ceil(targetAmount.value / appData.budgetMonth);
+      return Math.ceil(targetAmount.value / this.budgetMonth);
    },
    getStatusIncome: function() {
-      if(appData.budgetDay >= 1200) {
+      if(this.budgetDay >= 1200) {
          return ('У вас высокий уровень дохода');
       } 
-      if(appData.budgetDay >= 600 && appData.budgetDay < 1200) {
+      if(this.budgetDay >= 600 && this.budgetDay < 1200) {
          return ('У вас средний уровень дохода');
       } 
-      if(appData.budgetDay < 600 && appData.budgetDay >= 0) {
+      if(this.budgetDay < 600 && this.budgetDay >= 0) {
          return ('К сожалению у вас уровень дохода ниже среднего');
       } else {
          return ('Что то пошло не так');
       }
    },
    getInfoDeposit: function() {
-      if(appData.deposit) {
+      if(this.deposit) {
          do {
-            appData.percentDeposit = prompt('Какой годовой процент?', 10);
+            this.percentDeposit = prompt('Какой годовой процент?', 10);
+            
          }
          while(!isNumber(appData.percentDeposit));
 
          do {
-            appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+            this.moneyDeposit = prompt('Какая сумма заложена?', 10000);
          }
          while(!isNumber(appData.moneyDeposit));
       }
@@ -161,10 +161,11 @@ const appData = {
       let periodAmount = document.querySelector('.period-amount');
 
       periodAmount.textContent = periodSelect.value;
-      incomePeriodValue.value = appData.calcSavedMoney();
+      incomePeriodValue.value = this.calcSavedMoney();
+      
    },
    calcSavedMoney: function() {
-      return appData.budgetMonth * periodSelect.value;
+      return this.budgetMonth * periodSelect.value;
    }
 };
 
@@ -175,7 +176,7 @@ calcBtn.addEventListener('click', function() {
 });
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.changePeriod);
+periodSelect.addEventListener('input', appData.changePeriod.bind(appData));
 
 
 //if(appData.getTargetMonth() >= 0) {
