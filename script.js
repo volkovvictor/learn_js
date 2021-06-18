@@ -222,20 +222,23 @@ AppData.prototype.reset = function() {
    expensesAdd.addEventListener('click', this.addExpensesBlock);
    incomeAdd.addEventListener('click', this.addIncomeBlock);
    this.changePeriod();
-}
+};
+AppData.prototype.eventsListeners = function() {
+   const _this = this;
+   calcBtn.addEventListener('click', function() {
+      if(salaryAmount.value !== '') {
+         _this.start();
+         _this.stop();
+      }
+   });
+   expensesAdd.addEventListener('click', _this.addExpensesBlock);
+   incomeAdd.addEventListener('click', _this.addIncomeBlock);
+   periodSelect.addEventListener('input', _this.changePeriod.bind(_this));
+   resetBtn.addEventListener('click', _this.reset.bind(_this));
+};
 
 const appData = new AppData();
-
-calcBtn.addEventListener('click', function() {
-   if(salaryAmount.value !== '') {
-      appData.start();
-      appData.stop();
-   }
-});
-expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.changePeriod.bind(appData));
-resetBtn.addEventListener('click', appData.reset.bind(appData));
+appData.eventsListeners();
 
 
 if(appData.getTargetMonth() >= 0) {
