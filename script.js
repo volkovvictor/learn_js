@@ -69,9 +69,11 @@ class AppData {
    }
 
    addExpensesBlock() {
+      let expensesItems = document.querySelectorAll('.expenses-items');
       const expensesItemsClone = expensesItems[0].cloneNode(true);
 
       expensesItems[0].parentNode.insertBefore(expensesItemsClone, expensesAdd);
+      expensesItems = document.querySelectorAll('.expenses-items');
 
       if(expensesItems.length === 3) {
          expensesAdd.style.display = 'none';
@@ -79,13 +81,17 @@ class AppData {
    }
 
    addIncomeBlock() {
+      let incomeItems = document.querySelectorAll('.income-items');
       const incomeItemsClone = incomeItems[0].cloneNode(true);
 
       incomeItems[0].parentNode.insertBefore(incomeItemsClone, incomeAdd);
 
+      incomeItems = document.querySelectorAll('.income-items');
       if(incomeItems.length === 3) {
          incomeAdd.style.display = 'none';
       }
+
+      console.log(incomeItems.length);
    }
 
    getExpenses() {
@@ -96,8 +102,6 @@ class AppData {
          if(itemExpenses !== '' && cashExpenses !== '') {
             this.expenses[itemExpenses] = cashExpenses;
          }
-
-         console.log(this);
       });
    }
 
