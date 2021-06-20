@@ -151,7 +151,9 @@ class AppData {
    }
 
    getBudget() {
-      this.budgetMonth =  this.budget + this.incomeMonth - this.expensesMonth;
+      const monthDeposit = this.moneyDeposit * (this.percentDeposit / 100);
+
+      this.budgetMonth =  this.budget + this.incomeMonth  + monthDeposit - this.expensesMonth;
       this.budgetDay = Math.ceil(this.budgetMonth / 30);
    }
 
@@ -227,6 +229,8 @@ class AppData {
          item.disabled = true;
       });
 
+      depositBank.disabled = true;
+
       calcBtn.style.display = 'none';
       resetBtn.style.display = 'block';
 
@@ -251,6 +255,9 @@ class AppData {
          }
       });
 
+      depositBank.value = '';
+      depositBank.disabled = false;
+
       calcBtn.style.display = 'block';
       resetBtn.style.display = 'none';
 
@@ -264,6 +271,8 @@ class AppData {
       this.budgetDay = 0; 
       this.budgetMonth  = 0; 
       this.expensesMonth = 0;
+      this.percentDeposit = 0;
+      this.moneyDeposit = 0;
 
       expensesAdd.addEventListener('click', this.addExpensesBlock);
       incomeAdd.addEventListener('click', this.addIncomeBlock);
