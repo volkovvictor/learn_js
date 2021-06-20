@@ -174,24 +174,35 @@ class AppData {
    }
 
    getInfoDeposit() {
-
+      if(this.deposit) {
+         this.percentDeposit = depositPercent.value;
+         this.moneyDeposit = depositAmount.value;
+      }
    }
 
    changePercent() {
+      const valueSelect = depositBank.value;
 
+      if(valueSelect === 'other') {
+         depositPercent.style.display = 'inline-block';
+         depositPercent.value = '';
+      }  else {
+         depositPercent.style.display = 'none';
+         depositPercent.value = valueSelect;
+      }
    }
 
    depositHandler() {
       if(depositCheck.checked) {
          depositBank.style.display = 'inline-block';
-         depositPercent.style.display = 'inline-block';
+         depositAmount.style.display = 'inline-block';
          this.deposit = true;
          depositBank.addEventListener('change', this.changePercent);
       } else {
          depositBank.style.display = 'none';
-         depositPercent.style.display = 'none';
+         depositAmount.style.display = 'none';
          depositBank.value = '';
-         depositPercent.value = '';
+         depositAmount.value = '';
          this.deposit = false;
          depositBank.removeEventListener('change', this.changePercent);
       }
@@ -265,7 +276,7 @@ class AppData {
       incomeAdd.addEventListener('click', this.addIncomeBlock.bind(this));
       periodSelect.addEventListener('input', this.changePeriod.bind(this));
       resetBtn.addEventListener('click', this.reset.bind(this));
-      depositCheck.addEventListener('change', this.getInfoDeposit.bind(this));
+      depositCheck.addEventListener('change', this.depositHandler.bind(this));
    }
 }
 
