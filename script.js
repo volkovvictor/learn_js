@@ -44,10 +44,16 @@ class AppData {
       this.budgetDay = 0; 
       this.budgetMonth = 0; 
       this.expensesMonth = 0;
+      this.percentDeposit = 0;
+      this.moneyDeposit = 0;
    }
 
    start() {
-      if(salaryAmount.value !== '') {
+      if(salaryAmount.value === '') {
+         alert('Введите корректное значение в поле Месячный доход');
+      } else if(this.deposit && (!isNumber(depositPercent.value) || (depositPercent.value < 0 || depositPercent.value > 100))) {
+         alert('Введите корректное значение в поле проценты');
+      } else {
          this.budget = +salaryAmount.value;
          this.getExpenses();
          this.getIncome();
@@ -57,7 +63,6 @@ class AppData {
          this.getAddExpenses();
          this.getAddIncome();
          this.showResult();
-   
          this.stop();
       }
    }
@@ -184,10 +189,9 @@ class AppData {
 
    changePercent() {
       const valueSelect = depositBank.value;
-
       if(valueSelect === 'other') {
          depositPercent.style.display = 'inline-block';
-         depositPercent.value = '';
+         depositPercent.value = '0';
       }  else {
          depositPercent.style.display = 'none';
          depositPercent.value = valueSelect;
@@ -260,13 +264,19 @@ class AppData {
 
       calcBtn.style.display = 'block';
       resetBtn.style.display = 'none';
+      depositBank.style.display = 'none';
+      depositAmount.style.display = 'none';
+
+      if(depositPercent) {
+         depositPercent.style.display = 'none';
+      }
 
       this.income = {}; 
       this.incomeMonth = 0;
       this.addIncome = []; 
       this.expenses = {}; 
       this.addExpenses = []; 
-      this.deposit = false; 
+      this.deposit = false;
       this.budget = 0;
       this.budgetDay = 0; 
       this.budgetMonth  = 0; 
