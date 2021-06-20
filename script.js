@@ -21,7 +21,10 @@ const calcBtn = document.getElementById('start'),
       expensesItems = document.querySelectorAll('.expenses-items'),
       additionalExpensesItem = document.querySelector('.additional_expenses-item'),
       targetAmount = document.querySelector('.target-amount'),
-      periodSelect = document.querySelector('.period-select');
+      periodSelect = document.querySelector('.period-select'),
+      depositBank = document.querySelector('.deposit-bank'),
+      depositAmount = document.querySelector('.deposit-amount'),
+      depositPercent = document.querySelector('.deposit-percent');
 
 let reset = false;
 
@@ -171,16 +174,26 @@ class AppData {
    }
 
    getInfoDeposit() {
-      if(this.deposit) {
-         do {
-            this.percentDeposit = prompt('Какой годовой процент?', 10);
-         }
-         while(!isNumber(this.percentDeposit));
-   
-         do {
-            this.moneyDeposit = prompt('Какая сумма заложена?', 10000);
-         }
-         while(!isNumber(this.moneyDeposit));
+
+   }
+
+   changePercent() {
+
+   }
+
+   depositHandler() {
+      if(depositCheck.checked) {
+         depositBank.style.display = 'inline-block';
+         depositPercent.style.display = 'inline-block';
+         this.deposit = true;
+         depositBank.addEventListener('change', this.changePercent);
+      } else {
+         depositBank.style.display = 'none';
+         depositPercent.style.display = 'none';
+         depositBank.value = '';
+         depositPercent.value = '';
+         this.deposit = false;
+         depositBank.removeEventListener('change', this.changePercent);
       }
    }
 
@@ -252,19 +265,9 @@ class AppData {
       incomeAdd.addEventListener('click', this.addIncomeBlock.bind(this));
       periodSelect.addEventListener('input', this.changePeriod.bind(this));
       resetBtn.addEventListener('click', this.reset.bind(this));
+      depositCheck.addEventListener('change', this.getInfoDeposit.bind(this));
    }
 }
 
 const appData = new AppData();
 appData.eventsListeners();
-
-
-if(appData.getTargetMonth() >= 0) {
-   console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев(-а)');
-} else {
-   console.log('Цель не будет достигнута');
-}
-
-for(const key in appData) {
-   console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
-}
