@@ -51,9 +51,7 @@ class AppData {
    start() {
       if(salaryAmount.value === '') {
          alert('Введите корректное значение в поле Месячный доход');
-      } else if(this.deposit && (!isNumber(depositPercent.value) || (depositPercent.value < 0 || depositPercent.value > 100))) {
-         alert('Введите корректное значение в поле проценты');
-      } else {
+      }  else {
          this.budget = +salaryAmount.value;
          this.getExpenses();
          this.getIncome();
@@ -62,6 +60,7 @@ class AppData {
          this.getBudget();
          this.getAddExpenses();
          this.getAddIncome();
+         this.changePeriod();
          this.showResult();
          this.stop();
       }
@@ -192,6 +191,14 @@ class AppData {
       if(valueSelect === 'other') {
          depositPercent.style.display = 'inline-block';
          depositPercent.value = '0';
+         depositPercent.addEventListener('input', () => {
+            if(depositPercent.value >= 100) {
+               depositPercent.value = 99;
+            }
+            if(depositPercent.value < 0) {
+               depositPercent.value = 0;
+            }
+         });
       }  else {
          depositPercent.style.display = 'none';
          depositPercent.value = valueSelect;
@@ -222,7 +229,7 @@ class AppData {
    }
 
    calcSavedMoney() {
-      return this.budgetMonth * periodSelect.value;
+      return Math.ceil(this.budgetMonth * periodSelect.value);
    }
 
    stop() {
